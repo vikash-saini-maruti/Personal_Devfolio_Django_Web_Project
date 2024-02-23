@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Screen Image Gallery</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  .gallery-container {
+    position: relative;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  .arrow:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  .arrow.left {
+    left: 10px;
+  }
+  .arrow.right {
+    right: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="gallery-container">
+    <img class="gallery-image" src="https://maruti-project-showcase.vercel.app/img/marutihotels/Screenshot%201.png" alt="Image 1">
+    <span class="arrow left" onclick="showPrevImage()">&#10094;</span>
+    <span class="arrow right" onclick="showNextImage()">&#10095;</span>
+  </div>
+
+  <script>
+    let currentImageIndex = 0;
+    const images = [
+      "https://maruti-project-showcase.vercel.app/img/marutihotels/Screenshot%201.png",
+      "https://maruti-project-showcase.vercel.app/img/marutihotels/Screenshot%202.png",
+      // Add more image URLs here
+    ];
+
+    function showPrevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      document.querySelector(".gallery-image").src = images[currentImageIndex];
+    }
+
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      document.querySelector(".gallery-image").src = images[currentImageIndex];
+    }
+  </script>
+</body>
+</html>
